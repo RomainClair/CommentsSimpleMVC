@@ -3,10 +3,16 @@
 {% block content %}
     <h1>Item {{ item.title }}</h1>
     <p>{{ item.id }}. {{ item.title }}</p>
+    <ul>
+    {% for comment in comments %}
+        <li>{{ comment.content }}</li>
+    {% endfor %}
+    </ul>
     <a href="/items/edit?id={{ item.id }}">Edit</a>
     <form action="/items/delete" method="POST">
         <input type="hidden" name="id" value="{{ item.id }}">
         <button>Delete</button>
     </form>
-    <a href="/items">Back</a>
+    <a href="/items">Back</a><br>
+    <a href="/comments?id={{ item.id }}">Comment this item</a>
 {% endblock %}
